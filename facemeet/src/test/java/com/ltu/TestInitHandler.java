@@ -4,7 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import com.kins.vs.dao.InitDao;
+import com.ltu.fm.dao.InitDao;
 
 public class TestInitHandler extends TestCase {
 
