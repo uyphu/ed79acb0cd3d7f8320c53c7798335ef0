@@ -118,6 +118,30 @@
 	    <artifactId>sshd-core</artifactId>
 	    <version>0.14.0</version>
 	</dependency>
+	<dependency>
+		<groupId>com.google.common</groupId>
+		<artifactId>guava-r09</artifactId>
+		<version>1.0.0</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/libs/guava-r09/guava-r09.jar
+		</systemPath>
+	</dependency>
+	<dependency>
+		<groupId>com.amazonaws.geo</groupId>
+		<artifactId>dynamodb-geo</artifactId>
+		<version>1.0.0</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/libs/dynamodb-geo-1.0.0.jar
+		</systemPath>
+	</dependency>
+	<dependency>
+		<groupId>com.google.common.geometry</groupId>
+		<artifactId>s2-geometry-java</artifactId>
+		<version>1.0.0</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/libs/s2-geometry-library/s2-geometry-java.jar
+		</systemPath>
+	</dependency>
   </dependencies>
   <build>
         <resources>

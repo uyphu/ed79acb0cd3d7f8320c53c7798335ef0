@@ -24,6 +24,9 @@ public class DynamoDBConfiguration {
     // TODO: Specify the name of the Users table in DynamoDB
     public static final String USERS_TABLE_NAME = "sm_users";
     
+    /** The Constant USER_POINT_TABLE_NAME. */
+    public static final String USER_POINT_TABLE_NAME = "sm_user_point";
+    
     /** The Constant PET_TABLE_NAME. */
     // TODO: Specify the name of the Pet table in DynamoDB
     public static final String PET_TABLE_NAME = "sm_pets";

@@ -42,19 +42,14 @@ public class User implements Comparable<User>{
 	private ByteBuffer salt;
 
 	/** The display name. */
-	@DynamoDBAttribute(attributeName = "displayedName")
+	@DynamoDBAttribute(attributeName = "displayName")
 	@Expose
-	private String displayedName;
+	private String displayName;
 
 	/** The profile image url. */
-	@DynamoDBAttribute(attributeName = "profileImageUrl")
+	@DynamoDBAttribute(attributeName = "imageUrl")
 	@Expose
-	private String profileImageUrl;
-
-	/** The pm code. */
-	@DynamoDBAttribute(attributeName = "pmCode")
-	@Expose
-	private String pmCode;
+	private String imageUrl;
 
 	/** The type. */
 	@DynamoDBAttribute(attributeName = "type")
@@ -70,12 +65,23 @@ public class User implements Comparable<User>{
 	@Expose
 	private String status;
 	
+	/** The identity. */
 	private UserIdentity identity;
 
 	/** The created at. */
 	@DynamoDBAttribute(attributeName = "createdAt")
 	@Expose
 	private Date createdAt;
+	
+	/** The lng. */
+	@DynamoDBAttribute(attributeName = "lng")
+	@Expose
+	private double lng;
+	
+	/** The lat. */
+	@DynamoDBAttribute(attributeName = "lng")
+	@Expose
+	private double lat;
 
 	// //////////
 
@@ -158,22 +164,20 @@ public class User implements Comparable<User>{
 		this.salt = salt;
 	}
 
-	/**
-	 * Gets the displayed name.
-	 *
-	 * @return the displayed name
-	 */
-	public String getDisplayedName() {
-		return displayedName;
+	public String getDisplayName() {
+		return displayName;
 	}
 
-	/**
-	 * Sets the displayed name.
-	 *
-	 * @param displayedName the new displayed name
-	 */
-	public void setDisplayedName(String displayedName) {
-		this.displayedName = displayedName;
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	/**
@@ -210,42 +214,6 @@ public class User implements Comparable<User>{
 	 */
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	/**
-	 * Gets the profile image url.
-	 *
-	 * @return the profile image url
-	 */
-	public String getProfileImageUrl() {
-		return profileImageUrl;
-	}
-
-	/**
-	 * Sets the profile image url.
-	 *
-	 * @param profileImageUrl the new profile image url
-	 */
-	public void setProfileImageUrl(String profileImageUrl) {
-		this.profileImageUrl = profileImageUrl;
-	}
-
-	/**
-	 * Gets the pm code.
-	 *
-	 * @return the pm code
-	 */
-	public String getPmCode() {
-		return pmCode;
-	}
-
-	/**
-	 * Sets the pm code.
-	 *
-	 * @param pmCode the new pm code
-	 */
-	public void setPmCode(String pmCode) {
-		this.pmCode = pmCode;
 	}
 
 	/**
@@ -304,15 +272,30 @@ public class User implements Comparable<User>{
 		return salt.array();
 	}
 	
+	/**
+	 * Gets the identity.
+	 *
+	 * @return the identity
+	 */
 	@DynamoDBIgnore
     public UserIdentity getIdentity() {
         return identity;
     }
 
+    /**
+     * Sets the identity.
+     *
+     * @param identity the new identity
+     */
     public void setIdentity(UserIdentity identity) {
         this.identity = identity;
     }
     
+    /**
+     * Gets the cognito identity id.
+     *
+     * @return the cognito identity id
+     */
     @DynamoDBAttribute(attributeName = "identityId")
     public String getCognitoIdentityId() {
         if (this.identity == null) {
@@ -321,12 +304,53 @@ public class User implements Comparable<User>{
         return this.identity.getIdentityId();
     }
 
+    /**
+     * Sets the cognito identity id.
+     *
+     * @param cognitoIdentityId the new cognito identity id
+     */
     public void setCognitoIdentityId(String cognitoIdentityId) {
         if (this.identity == null) {
             this.identity = new UserIdentity();
         }
         this.identity.setIdentityId(cognitoIdentityId);
     }
+    
+	/**
+	 * Gets the lng.
+	 *
+	 * @return the lng
+	 */
+	public double getLng() {
+		return lng;
+	}
+
+	/**
+	 * Sets the lng.
+	 *
+	 * @param lng the new lng
+	 */
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
+	/**
+	 * Gets the lat.
+	 *
+	 * @return the lat
+	 */
+	public double getLat() {
+		return lat;
+	}
+
+	/**
+	 * Sets the lat.
+	 *
+	 * @param lat the new lat
+	 */
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
 
 	/**
 	 * Instantiates a new user.
@@ -353,6 +377,21 @@ public class User implements Comparable<User>{
 		}
 	}
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param id the id
+	 * @param email the email
+	 * @param password the password
+	 * @param salt the salt
+	 * @param displayedName the displayed name
+	 * @param profileImageUrl the profile image url
+	 * @param pmCode the pm code
+	 * @param type the type
+	 * @param activateCode the activate code
+	 * @param status the status
+	 * @param createdAt the created at
+	 */
 	public User(String id, String email, ByteBuffer password, ByteBuffer salt, String displayedName, String profileImageUrl,
 			String pmCode, String type, String activateCode, String status, Date createdAt) {
 		super();
@@ -369,6 +408,9 @@ public class User implements Comparable<User>{
 		this.createdAt = createdAt;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", salt=" + salt + ", displayedName="
@@ -376,6 +418,9 @@ public class User implements Comparable<User>{
 				+ ", activateCode=" + activateCode + ", status=" + status + ", createdAt=" + createdAt + "]";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(User other) {
 		return this.displayedName.compareTo(other.displayedName);
