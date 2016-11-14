@@ -31,6 +31,9 @@ public class DynamoDBConfiguration {
     // TODO: Specify the name of the Pet table in DynamoDB
     public static final String PET_TABLE_NAME = "sm_pets";
     
+    /** The Constant DEVICE_TABLE_NAME. */
+    public static final String DEVICE_TABLE_NAME = "sm_devices";
+    
     /** The Constant SCAN_LIMIT. */
     public static final int SCAN_LIMIT = 50;
     

@@ -12,7 +12,6 @@
  */
 package com.ltu.fm.configuration;
 
-import com.ltu.fm.utils.S3ResourceLoaderUtil;
 
 /**
  * Configuration parameters for the Cognito credentials provider.
