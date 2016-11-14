@@ -2,12 +2,15 @@ package com.ltu.fm.dao;
 
 import java.util.ArrayList;
 
+import com.amazonaws.geo.GeoDataManagerConfiguration;
+import com.amazonaws.geo.util.GeoTableUtil;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
+import com.amazonaws.services.dynamodbv2.model.CreateTableResult;
 import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
 import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.dynamodbv2.model.LocalSecondaryIndex;
@@ -38,7 +41,10 @@ public class InitDao {
 		try {
 
 			//deleteTable(DynamoDBConfiguration.USERS_TABLE_NAME);
-			deleteTable(DynamoDBConfiguration.PET_TABLE_NAME);
+			//deleteTable(DynamoDBConfiguration.DEVICE_TABLE_NAME);
+			//deleteTable(DynamoDBConfiguration.PET_TABLE_NAME);
+			deleteTable(DynamoDBConfiguration.USER_POINT_TABLE_NAME);
+			
 //			// //
 //			// // // Parameter1: table name // Parameter2: reads per second //
 //			// // // Parameter3: writes per second // Parameter4/5: partition
@@ -47,13 +53,31 @@ public class InitDao {
 //			// // // Parameter6/7: sort key and data type (if applicable)
 //
 			//createTable(DynamoDBConfiguration.USERS_TABLE_NAME, 10L, 2L, "id", "S", null, null);
-			createTable(DynamoDBConfiguration.PET_TABLE_NAME, 10L, 2L, "id", "S", null, null);
+			//createTable(DynamoDBConfiguration.DEVICE_TABLE_NAME, 10L, 2L, "id", "S", null, null);
+			//createTable(DynamoDBConfiguration.PET_TABLE_NAME, 10L, 2L, "id", "S", null, null);
+			createGeoTable(DynamoDBConfiguration.USER_POINT_TABLE_NAME, 10L, 10L);
 
 		} catch (Exception e) {
 			// log.error(e.getMessage(), e.getCause());
 			e.printStackTrace();
 		}
 		System.out.println("Success.");
+	}
+	
+	public static void createGeoTable(String tableName,long readCapacityUnits, long writeCapacityUnits) {
+		try {
+			GeoDataManagerConfiguration config = new GeoDataManagerConfiguration(client, tableName);
+			CreateTableRequest createTableRequest = GeoTableUtil.getCreateTableRequest(config);
+
+			ProvisionedThroughput provisionedThroughput = new ProvisionedThroughput().withReadCapacityUnits(readCapacityUnits)
+			        .withWriteCapacityUnits(writeCapacityUnits);
+			createTableRequest.setProvisionedThroughput(provisionedThroughput);
+
+			client.createTable(createTableRequest);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**

@@ -32,6 +32,7 @@ import com.ltu.fm.dao.AbstractDao;
 import com.ltu.fm.exception.DAOException;
 import com.ltu.fm.exception.ErrorCodeDetail;
 import com.ltu.fm.utils.AppUtil;
+import com.ltu.fm.utils.ConvertUtil;
 
 /**
  * DynamoDB implementation of the UserDAO interface. This class reads the
@@ -295,7 +296,7 @@ public class DDBUserDAO extends AbstractDao<User> implements UserDAO {
 
 			if (scanResult != null && scanResult.getItems().size() > 0) {
 				for (Map<String, AttributeValue> item : scanResult.getItems()) {
-					users.add(new User(item));
+					users.add(ConvertUtil.toUser(item));
 					if (limit == users.size()) {
 						return users;
 					}

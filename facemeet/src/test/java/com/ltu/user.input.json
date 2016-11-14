@@ -1,0 +1,9 @@
+{
+	"action":"com.ltu.fm.action.user.RegisterAction",
+	"body":{
+	    "email":"uyphu3@yahoo.com",
+	    "password":"123456",
+	    "displayName":"Phu3",
+	    "imageUrl":"test"
+	}
+}
