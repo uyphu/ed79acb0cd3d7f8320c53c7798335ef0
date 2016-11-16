@@ -1,7 +1,6 @@
 package com.ltu.fm.geo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +19,6 @@ import com.amazonaws.geo.model.PutPointResult;
 import com.amazonaws.geo.model.QueryRadiusRequest;
 import com.amazonaws.geo.model.QueryRadiusResult;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.kins.vc.constants.Constants;
-import com.kins.vs.model.userevent.UserEvent;
-import com.kins.vs.utils.AppUtil;
 import com.ltu.fm.configuration.DynamoDBConfiguration;
 import com.ltu.fm.dao.AbstractDao;
 import com.ltu.fm.exception.DAOException;
@@ -116,23 +112,6 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 			throw new DAOException("Error queryin DAO", e);
 		}
 		
-	}
-	
-	private Map<String, AttributeValue> buildExclusiveStartKeyWithUserId(String cursor) {
-		if (cursor == null || cursor.trim().equals(Constants.EMPTY_STRING)) {
-			return null;
-		}
-		
-		UserEvent item = find(cursor);
-		if (item == null) {
-			return null;
-		}
-		
-		Map<String, AttributeValue> exclusiveStartKey = new HashMap<String, AttributeValue>();
-		exclusiveStartKey.put("id", new AttributeValue(item.getId()));
-		exclusiveStartKey.put("userId", new AttributeValue(item.getUserId()));
-		exclusiveStartKey.put("startDate", new AttributeValue(AppUtil.toString(item.getStartDate())));
-		return exclusiveStartKey;
 	}
 	
 	private static UserPoint toUserPoint(Map<String, AttributeValue> item) throws DAOException {
