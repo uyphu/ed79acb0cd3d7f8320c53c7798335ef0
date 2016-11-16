@@ -50,3 +50,4 @@ public class DynamoDBConfiguration {
     public static final String USER_STARTDATE_USER_CONFERENCE_INDEX = "userId-startDate-index";
     
 }
+

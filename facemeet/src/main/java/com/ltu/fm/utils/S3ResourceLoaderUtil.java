@@ -87,3 +87,4 @@ public class S3ResourceLoaderUtil {
 		System.out.println(getProperty("webUrl"));
 	}
 }
+
