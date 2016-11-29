@@ -1,5 +1,7 @@
 package com.ltu.fm.geo;
 
+import java.util.Date;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class UserPoint.
@@ -11,6 +13,9 @@ public class UserPoint {
 	
 	/** The display name. */
 	private String displayName;
+	
+	/** The created at. */
+	private Date createdAt;
 	
 	/** The lat. */
 	private double lat;
@@ -89,7 +94,33 @@ public class UserPoint {
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
+	
+	/**
+	 * Gets the created at.
+	 *
+	 * @return the created at
+	 */
+	public Date getCreatedAt() {
+		return createdAt;
+	}
 
+	/**
+	 * Sets the created at.
+	 *
+	 * @param createdAt the new created at
+	 */
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	/**
+	 * Instantiates a new user point.
+	 *
+	 * @param userId the user id
+	 * @param displayName the display name
+	 * @param lat the lat
+	 * @param lng the lng
+	 */
 	public UserPoint(String userId, String displayName, double lat, double lng) {
 		this.userId = userId;
 		this.displayName = displayName;
@@ -97,7 +128,11 @@ public class UserPoint {
 		this.lng = lng;
 	}
 	
+	/**
+	 * Instantiates a new user point.
+	 */
 	public UserPoint() {
 		
 	}
+	
 }

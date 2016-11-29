@@ -128,6 +128,11 @@ public class AppUtil {
 		return DATE_FORMAT.format(Calendar.getInstance().getTime());
 	}
 	
+	public static String getUTCCurTime() {
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Constants.LONG_DATE_FORMAT);
+		return DATE_FORMAT.format(Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime());
+	}
+	
 	/**
 	 * Gets the cur date time.
 	 *

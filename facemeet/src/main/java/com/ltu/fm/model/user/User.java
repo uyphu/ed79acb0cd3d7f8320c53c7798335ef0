@@ -80,8 +80,6 @@ public class User implements Comparable<User>{
 	@Expose
 	private double lat;
 
-	// //////////
-
 	/**
 	 * Instantiates a new user.
 	 */

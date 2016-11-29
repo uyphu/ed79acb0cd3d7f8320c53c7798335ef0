@@ -18,24 +18,42 @@ import com.amazonaws.geo.model.PutPointRequest;
 import com.amazonaws.geo.model.PutPointResult;
 import com.amazonaws.geo.model.QueryRadiusRequest;
 import com.amazonaws.geo.model.QueryRadiusResult;
+import com.amazonaws.geo.model.UpdatePointRequest;
+import com.amazonaws.geo.model.UpdatePointResult;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.ltu.fm.configuration.DynamoDBConfiguration;
 import com.ltu.fm.dao.AbstractDao;
 import com.ltu.fm.exception.DAOException;
 import com.ltu.fm.model.user.User;
+import com.ltu.fm.utils.AppUtil;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DDBUserPointDAO.
+ */
 public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPointDAO {
 	
+	/** The instance. */
 	private static DDBUserPointDAO instance = null;
 	
+	/** The geo data manager. */
 	private static GeoDataManager geoDataManager = null;
 	
+	/** The config. */
 	private static GeoDataManagerConfiguration config = null;
 	
+	/** The mapper. */
 	private static ObjectMapper mapper;
+	
+	/** The factory. */
 	private static JsonFactory factory;
 	
+	/**
+	 * Gets the single instance of DDBUserPointDAO.
+	 *
+	 * @return single instance of DDBUserPointDAO
+	 */
 	public static DDBUserPointDAO getInstance() {
 		if (instance == null) {
 			config = new GeoDataManagerConfiguration(client, DynamoDBConfiguration.USER_POINT_TABLE_NAME);
@@ -43,26 +61,33 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 			
 			mapper = new ObjectMapper();
 			factory = mapper.getJsonFactory();
-			
 			instance = new DDBUserPointDAO();
 		}
 
 		return instance;
 	}
 
+	/**
+	 * Instantiates a new DDB user point dao.
+	 */
 	protected DDBUserPointDAO() {
 		super(UserPoint.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.ltu.fm.geo.UserPointDAO#putUser(com.ltu.fm.model.user.User)
+	 */
 	@Override
 	public PutPointResult putUser(User user) throws DAOException {
 		try {
 			GeoPoint geoPoint = new GeoPoint(user.getLat(),user.getLng());
 			AttributeValue rangeKeyAttributeValue = new AttributeValue().withS(user.getId());
 			AttributeValue schoolNameKeyAttributeValue = new AttributeValue().withS(user.getDisplayName());
+			AttributeValue createdAtAtt = new AttributeValue().withS(AppUtil.getUTCCurTime());
 
 			PutPointRequest putPointRequest = new PutPointRequest(geoPoint, rangeKeyAttributeValue);
 			putPointRequest.getPutItemRequest().addItemEntry("displayName", schoolNameKeyAttributeValue);
+			putPointRequest.getPutItemRequest().addItemEntry("createdAt", createdAtAtt);
 
 			PutPointResult putPointResult = geoDataManager.putPoint(putPointRequest);
 			return putPointResult;
@@ -72,6 +97,38 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 		}
 	}
 	
+	/**
+	 * Update user.
+	 *
+	 * @param user the user
+	 * @return the update point result
+	 * @throws DAOException the DAO exception
+	 */
+	public UpdatePointResult updateUser(User user) throws DAOException {
+		try {
+			GeoPoint geoPoint = new GeoPoint(user.getLat(),user.getLng());
+			AttributeValue rangeKeyAttributeValue = new AttributeValue().withS(user.getId());
+			AttributeValue createdAtAtt = new AttributeValue().withS(AppUtil.getUTCCurTime());
+
+			UpdatePointRequest updatePointRequest = new UpdatePointRequest(geoPoint, rangeKeyAttributeValue);
+			updatePointRequest.getUpdateItemRequest().addKeyEntry("createdAt", createdAtAtt);
+
+			UpdatePointResult updatePointResult = geoDataManager.updatePoint(updatePointRequest);
+			return updatePointResult;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("Error puting point", e);
+		}
+	}
+	
+	/**
+	 * Gets the point.
+	 *
+	 * @param userId the user id
+	 * @param lat the lat
+	 * @param lng the lng
+	 * @return the point
+	 */
 	public GetPointResult getPoint(String userId, double lat, double lng) {
 		GeoPoint geoPoint = new GeoPoint(lat, lng);
 		AttributeValue rangeKeyAttributeValue = new AttributeValue().withS(userId);
@@ -81,6 +138,9 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.ltu.fm.geo.UserPointDAO#queryRadius(com.amazonaws.geo.model.GeoPoint, double, java.lang.Integer, java.lang.String)
+	 */
 	public List<UserPoint> queryRadius(GeoPoint centerPoint, double radiusInMeter, Integer limit, String cursor) throws DAOException {
 		try {
 			List<UserPoint> results = new ArrayList<UserPoint>();
@@ -114,6 +174,13 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 		
 	}
 	
+	/**
+	 * To user point.
+	 *
+	 * @param item the item
+	 * @return the user point
+	 * @throws DAOException the DAO exception
+	 */
 	private static UserPoint toUserPoint(Map<String, AttributeValue> item) throws DAOException {
 		try {
 			
