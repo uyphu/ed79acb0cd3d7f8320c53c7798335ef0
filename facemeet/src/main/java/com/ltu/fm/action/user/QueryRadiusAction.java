@@ -10,10 +10,10 @@ import com.ltu.fm.dao.factory.DAOFactory;
 import com.ltu.fm.exception.BadRequestException;
 import com.ltu.fm.exception.DAOException;
 import com.ltu.fm.exception.InternalErrorException;
-import com.ltu.fm.geo.UserPoint;
-import com.ltu.fm.geo.UserPointDAO;
 import com.ltu.fm.model.action.user.QueryRadiusRequest;
 import com.ltu.fm.model.action.user.QueryUserPointResponse;
+import com.ltu.fm.model.geo.UserPoint;
+import com.ltu.fm.model.geo.UserPointDAO;
 
 public class QueryRadiusAction extends AbstractLambdaAction{
 	//private LambdaLogger logger;

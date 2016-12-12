@@ -14,7 +14,7 @@ package com.ltu.fm.model.action.user;
 
 import java.util.List;
 
-import com.ltu.fm.geo.UserPoint;
+import com.ltu.fm.model.geo.UserPoint;
 
 /**
  * Bean for the pet creation response.

@@ -1,8 +1,7 @@
-package com.ltu.fm.geo;
+package com.ltu.fm.model.geo;
 
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserPoint.
  */

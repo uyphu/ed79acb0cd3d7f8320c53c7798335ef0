@@ -9,9 +9,9 @@ import com.ltu.fm.dao.factory.DAOFactory;
 import com.ltu.fm.exception.BadRequestException;
 import com.ltu.fm.exception.DAOException;
 import com.ltu.fm.exception.InternalErrorException;
-import com.ltu.fm.geo.UserPointDAO;
 import com.ltu.fm.model.action.user.PutUserPointRequest;
 import com.ltu.fm.model.action.user.UserResponse;
+import com.ltu.fm.model.geo.UserPointDAO;
 import com.ltu.fm.model.user.User;
 import com.ltu.fm.model.user.UserDAO;
 
