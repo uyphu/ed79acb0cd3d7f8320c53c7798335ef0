@@ -7,9 +7,6 @@ import java.security.spec.InvalidKeySpecException;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.JsonObject;
-import com.kins.vs.model.device.Device;
-import com.kins.vs.model.device.DeviceDAO;
-import com.kins.vs.service.FacebookService;
 import com.ltu.fm.action.AbstractLambdaAction;
 import com.ltu.fm.auth.Token;
 import com.ltu.fm.auth.TokenProvider;
@@ -22,8 +19,11 @@ import com.ltu.fm.exception.InternalErrorException;
 import com.ltu.fm.helper.PasswordHelper;
 import com.ltu.fm.model.action.user.LoginUserResponse;
 import com.ltu.fm.model.action.user.LoginWithTokenRequest;
+import com.ltu.fm.model.device.Device;
+import com.ltu.fm.model.device.DeviceDAO;
 import com.ltu.fm.model.user.User;
 import com.ltu.fm.model.user.UserDAO;
+import com.ltu.fm.service.FacebookService;
 
 /**
  * Action that creates a new User

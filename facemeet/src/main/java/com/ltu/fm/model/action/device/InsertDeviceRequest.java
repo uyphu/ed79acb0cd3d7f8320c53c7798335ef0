@@ -1,4 +1,4 @@
-package com.kins.vs.model.action.device;
+package com.ltu.fm.model.action.device;
 
 /**
  * The Class InsertDeviceRequest.

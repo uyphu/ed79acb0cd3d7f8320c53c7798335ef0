@@ -10,21 +10,24 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package com.kins.vs.model.action.device;
+package com.ltu.fm.model.action.device;
+
+import com.google.gson.annotations.Expose;
+import com.ltu.fm.model.device.Device;
 
 /**
- * The Class InsertDeviceRequest.
+ * Bean for the pet creation response.
  */
-public class GetDeviceRequest {
-
-	private String id;
+public class DeviceResponse {
 	
-	public String getId() {
-		return id;
+	@Expose
+    private Device item;
+
+	public Device getItem() {
+		return item;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setItem(Device item) {
+		this.item = item;
 	}
-
 }

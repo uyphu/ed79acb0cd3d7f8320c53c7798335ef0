@@ -1,4 +1,4 @@
-package com.kins.vs.model.device;
+package com.ltu.fm.model.device;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -10,12 +10,12 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package com.kins.vs.model.action.device;
+package com.ltu.fm.model.action.device;
 
 /**
  * The Class InsertDeviceRequest.
  */
-public class UpdateDeviceRequest {
+public class MergeDeviceRequest {
 
 	private String id;
 	private String phoneId;
@@ -63,11 +63,11 @@ public class UpdateDeviceRequest {
 		this.lastLoginUserId = lastLoginUserId;
 	}
 	
-	public UpdateDeviceRequest() {
+	public MergeDeviceRequest() {
 		
 	}
 
-	public UpdateDeviceRequest(String phoneId, String type, String pushToken, String lastLoginUserId) {
+	public MergeDeviceRequest(String phoneId, String type, String pushToken, String lastLoginUserId) {
 		this.phoneId = phoneId;
 		this.type = type;
 		this.pushToken = pushToken;

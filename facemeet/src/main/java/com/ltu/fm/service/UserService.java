@@ -1,4 +1,4 @@
-package com.kins.vs.service;
+package com.ltu.fm.service;
 
 
 public interface UserService {

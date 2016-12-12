@@ -1,18 +1,18 @@
-package com.kins.vs.action.device;
+package com.ltu.fm.action.device;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.JsonObject;
-import com.kins.vs.model.action.device.DeviceResponse;
-import com.kins.vs.model.action.device.InsertDeviceRequest;
-import com.kins.vs.model.device.Device;
-import com.kins.vs.model.device.DeviceDAO;
 import com.ltu.fm.action.AbstractLambdaAction;
 import com.ltu.fm.configuration.ExceptionMessages;
 import com.ltu.fm.dao.factory.DAOFactory;
 import com.ltu.fm.exception.BadRequestException;
 import com.ltu.fm.exception.DAOException;
 import com.ltu.fm.exception.InternalErrorException;
+import com.ltu.fm.model.action.device.DeviceResponse;
+import com.ltu.fm.model.action.device.InsertDeviceRequest;
+import com.ltu.fm.model.device.Device;
+import com.ltu.fm.model.device.DeviceDAO;
 import com.ltu.fm.utils.AppUtil;
 
 /**

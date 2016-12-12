@@ -12,8 +12,8 @@
  */
 package com.ltu.fm.dao.factory;
 
-import com.kins.vs.model.device.DDBDeviceDAO;
-import com.kins.vs.model.device.DeviceDAO;
+import com.ltu.fm.model.device.DDBDeviceDAO;
+import com.ltu.fm.model.device.DeviceDAO;
 import com.ltu.fm.model.geo.DDBUserPointDAO;
 import com.ltu.fm.model.geo.UserPointDAO;
 import com.ltu.fm.model.user.DDBUserDAO;
