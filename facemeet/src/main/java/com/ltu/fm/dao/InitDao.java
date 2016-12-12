@@ -39,9 +39,9 @@ public class InitDao {
 	public static void initTables() {
 		try {
 
-			//deleteTable(DynamoDBConfiguration.USERS_TABLE_NAME);
-			//deleteTable(DynamoDBConfiguration.DEVICE_TABLE_NAME);
-			//deleteTable(DynamoDBConfiguration.PET_TABLE_NAME);
+			deleteTable(DynamoDBConfiguration.USERS_TABLE_NAME);
+			deleteTable(DynamoDBConfiguration.DEVICE_TABLE_NAME);
+			deleteTable(DynamoDBConfiguration.PET_TABLE_NAME);
 			deleteTable(DynamoDBConfiguration.USER_POINT_TABLE_NAME);
 			
 //			// //
@@ -51,9 +51,9 @@ public class InitDao {
 //			// // // data type
 //			// // // Parameter6/7: sort key and data type (if applicable)
 //
-			//createTable(DynamoDBConfiguration.USERS_TABLE_NAME, 10L, 2L, "id", "S", null, null);
-			//createTable(DynamoDBConfiguration.DEVICE_TABLE_NAME, 10L, 2L, "id", "S", null, null);
-			//createTable(DynamoDBConfiguration.PET_TABLE_NAME, 10L, 2L, "id", "S", null, null);
+			createTable(DynamoDBConfiguration.USERS_TABLE_NAME, 10L, 2L, "id", "S", null, null);
+			createTable(DynamoDBConfiguration.DEVICE_TABLE_NAME, 10L, 2L, "id", "S", null, null);
+			createTable(DynamoDBConfiguration.PET_TABLE_NAME, 10L, 2L, "id", "S", null, null);
 			createGeoTable(DynamoDBConfiguration.USER_POINT_TABLE_NAME, 10L, 10L);
 
 		} catch (Exception e) {
