@@ -18,7 +18,6 @@ import com.amazonaws.services.cognitoidentity.model.GetCredentialsForIdentityRes
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperIdentityRequest;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperIdentityResult;
 import com.ltu.fm.configuration.CognitoConfiguration;
-import com.ltu.fm.configuration.CredentialConfiguration;
 import com.ltu.fm.exception.AuthorizationException;
 import com.ltu.fm.model.user.User;
 import com.ltu.fm.model.user.UserCredentials;
@@ -31,7 +30,8 @@ import com.ltu.fm.model.user.UserIdentity;
 public class CognitoCredentialsProvider implements CredentialsProvider {
     private static CognitoCredentialsProvider instance = null;
 
-    private static AmazonCognitoIdentityClient identityClient = new AmazonCognitoIdentityClient(CredentialConfiguration.getAwsCredentials());
+    //private static AmazonCognitoIdentityClient identityClient = new AmazonCognitoIdentityClient(CredentialConfiguration.getAwsCredentials());
+    private static AmazonCognitoIdentityClient identityClient = new AmazonCognitoIdentityClient();
 
     /**
      * Gets the initialized instance of the CognitoCredentialsProvider. This provider should be accessed through the

@@ -57,26 +57,26 @@ public class TestUtils {
     public static void callAPI(Context context, String input, String output) {
     	//FIXME comment dev bucket, config
     	
-    	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-		System.out.println(iso8601Format.format(Calendar.getInstance().getTime()));
-		long start = Calendar.getInstance().getTime().getTime();
-		try {
-			InputStream request = TestUtils.class.getResourceAsStream(input);
-			OutputStream response;
-			response = new FileOutputStream(output);
-			RequestRouter.lambdaHandler(request, response, context);
-			
-		} catch (BadRequestException e) {
-			e.printStackTrace();
-		} catch (InternalErrorException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		System.out.println(iso8601Format.format(Calendar.getInstance().getTime()));
-		long end = Calendar.getInstance().getTime().getTime();
-		double result = ((end - start)/1000.0)/60.0;
-		System.out.println("Duration:" + String.valueOf(result));
+//    	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//		System.out.println(iso8601Format.format(Calendar.getInstance().getTime()));
+//		long start = Calendar.getInstance().getTime().getTime();
+//		try {
+//			InputStream request = TestUtils.class.getResourceAsStream(input);
+//			OutputStream response;
+//			response = new FileOutputStream(output);
+//			RequestRouter.lambdaHandler(request, response, context);
+//			
+//		} catch (BadRequestException e) {
+//			e.printStackTrace();
+//		} catch (InternalErrorException e) {
+//			e.printStackTrace();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println(iso8601Format.format(Calendar.getInstance().getTime()));
+//		long end = Calendar.getInstance().getTime().getTime();
+//		double result = ((end - start)/1000.0)/60.0;
+//		System.out.println("Duration:" + String.valueOf(result));
 
 	}
 
