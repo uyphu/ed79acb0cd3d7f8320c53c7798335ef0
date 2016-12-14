@@ -20,12 +20,12 @@ package com.ltu.fm.configuration;
 public class CognitoConfiguration {
 	// TODO: Specify the identity pool id
 	/** The Constant IDENTITY_POOL_ID. */
-	public static final String IDENTITY_POOL_ID = "us-east-1:5a52146d-167d-447d-a1d4-9ae556c5f5d4";
+	public static final String IDENTITY_POOL_ID = "us-east-1:d9a0e97c-27a0-4e92-87c9-7c5de4d9e778";
 	//public static final String IDENTITY_POOL_ID = S3ResourceLoaderUtil.getProperty(AppConfiguration.IDENTITY_POOL_ID);
     
 	// TODO: Specify the custom provider name used by the identity pool
     /** The Constant CUSTOM_PROVIDER_NAME. */
-	public static final String CUSTOM_PROVIDER_NAME = "com.kins.vc";
+	public static final String CUSTOM_PROVIDER_NAME = "com.ltu.fm";
     //public static final String CUSTOM_PROVIDER_NAME = S3ResourceLoaderUtil.getProperty(AppConfiguration.CUSTOM_PROVIDER_NAME);
 
     /** The Constant COGNITO_PROVIDER_NAME. */

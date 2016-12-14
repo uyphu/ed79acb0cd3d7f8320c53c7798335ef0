@@ -204,8 +204,8 @@ public class MailUtil {
 		
 		builder.append(S3ResourceLoaderUtil.getProperty(AppConfiguration.ACTIVATION_MESSAGE));
 		builder.append(Constants.SPACE_STRING);
-		builder.append(S3ResourceLoaderUtil.getProperty(AppConfiguration.WEB_URL_KEY));
-		builder.append("activateaccount/?activatecode=");
+		//builder.append(S3ResourceLoaderUtil.getProperty(AppConfiguration.WEB_URL_KEY));
+		//builder.append("activateaccount/?activatecode=");
 		builder.append(activateKey);
 		return builder.toString();
 	}
