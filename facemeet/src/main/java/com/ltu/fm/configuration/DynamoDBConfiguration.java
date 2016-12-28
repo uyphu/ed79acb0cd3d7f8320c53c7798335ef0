@@ -49,5 +49,7 @@ public class DynamoDBConfiguration {
     /** The Constant USER_STARTDATE_USER_CONFERENCE_INDEX. */
     public static final String USER_STARTDATE_USER_CONFERENCE_INDEX = "userId-startDate-index";
     
+    public static final String CREATED_AT_USER_POINT_INDEX = "createdAt-index";
+    
 }
 
