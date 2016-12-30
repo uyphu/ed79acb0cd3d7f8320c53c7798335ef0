@@ -1,7 +1,6 @@
 package com.ltu.fm.model.geo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import com.amazonaws.geo.GeoDataManager;
 import com.amazonaws.geo.GeoDataManagerConfiguration;
+import com.amazonaws.geo.model.DeletePointRequest;
+import com.amazonaws.geo.model.DeletePointResult;
 import com.amazonaws.geo.model.GeoPoint;
 import com.amazonaws.geo.model.GetPointRequest;
 import com.amazonaws.geo.model.GetPointResult;
@@ -22,12 +23,12 @@ import com.amazonaws.geo.model.QueryRadiusRequest;
 import com.amazonaws.geo.model.QueryRadiusResult;
 import com.amazonaws.geo.model.UpdatePointRequest;
 import com.amazonaws.geo.model.UpdatePointResult;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.QueryResultPage;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.kins.vc.constants.Constants;
-import com.kins.vs.model.userconference.UserConference;
 import com.ltu.fm.configuration.DynamoDBConfiguration;
+import com.ltu.fm.constants.Constants;
 import com.ltu.fm.dao.AbstractDao;
 import com.ltu.fm.exception.DAOException;
 import com.ltu.fm.model.user.User;
@@ -98,19 +99,23 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 			PutPointResult putPointResult = geoDataManager.putPoint(putPointRequest);
 			return putPointResult;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new DAOException("Error puting point", e);
 		}
 	}
 	
-	private void deletePoint(String userId) throws IOException, JSONException {
-		GeoPoint geoPoint = new GeoPoint(requestObject.getDouble("lat"), requestObject.getDouble("lng"));
-		AttributeValue rangeKeyAttributeValue = new AttributeValue().withS(userId);
+	public DeletePointResult deletePoint(UserPoint user) throws DAOException {
+		try {
+			GeoPoint geoPoint = new GeoPoint(user.getLat(), user.getLng());
+			AttributeValue rangeKeyAttributeValue = new AttributeValue().withS(user.getUserId());
 
-		DeletePointRequest deletePointRequest = new DeletePointRequest(geoPoint, rangeKeyAttributeValue);
-		DeletePointResult deletePointResult = geoDataManager.deletePoint(deletePointRequest);
-
-		printDeletePointResult(deletePointResult, out);
+			DeletePointRequest deletePointRequest = new DeletePointRequest(geoPoint, rangeKeyAttributeValue);
+			DeletePointResult deletePointResult = geoDataManager.deletePoint(deletePointRequest);
+			return deletePointResult;
+		} catch (Exception e) {
+			throw new DAOException("Error deleting point", e);
+		}
+		
 	}
 	
 	/**
@@ -197,12 +202,12 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 		DynamoDBQueryExpression<UserPoint> queryExpression = new DynamoDBQueryExpression<UserPoint>()
 				.withIndexName(DynamoDBConfiguration.CREATED_AT_USER_POINT_INDEX)
 				.withConsistentRead(false)
-				.withKeyConditionExpression("createdAt = :createdAt")
+				.withKeyConditionExpression("createdAt < :createdAt")
 				.withExpressionAttributeValues(eav).withLimit(limit);
 		queryExpression.setScanIndexForward(false);
-		queryExpression.setExclusiveStartKey(buildExclusiveStartKeyWithUserId(cursor));
+		queryExpression.setExclusiveStartKey(buildExclusiveStartKeyWithCreatedAt(cursor));
 
-		QueryResultPage<UserConference> list = getMapper().queryPage(UserConference.class, queryExpression);
+		QueryResultPage<UserPoint> list = getMapper().queryPage(UserPoint.class, queryExpression);
 
 		return list;
 	}
@@ -218,9 +223,7 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 		}
 		
 		Map<String, AttributeValue> exclusiveStartKey = new HashMap<String, AttributeValue>();
-		exclusiveStartKey.put("id", new AttributeValue(item.));
 		exclusiveStartKey.put("userId", new AttributeValue(item.getUserId()));
-		exclusiveStartKey.put("startDate", new AttributeValue(AppUtil.toString(item.getStartDate())));
 		return exclusiveStartKey;
 	}
 	
@@ -250,6 +253,10 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 			throw new DAOException("Error binding data.", e);
 		}
 		
+	}
+	
+	protected DynamoDBMapper getMapper() {
+		return new DynamoDBMapper(client);
 	}
 
 }
