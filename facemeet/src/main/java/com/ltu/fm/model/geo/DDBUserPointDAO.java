@@ -35,9 +35,9 @@ import com.ltu.fm.model.user.User;
 import com.ltu.fm.utils.AppUtil;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DDBUserPointDAO.
+ * @author uyphu
  */
 public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPointDAO {
 	
@@ -81,9 +81,6 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 		super(UserPoint.class);
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.ltu.fm.geo.UserPointDAO#putUser(com.ltu.fm.model.user.User)
-	 */
 	@Override
 	public PutPointResult putUser(User user) throws DAOException {
 		try {
@@ -159,9 +156,6 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.ltu.fm.geo.UserPointDAO#queryRadius(com.amazonaws.geo.model.GeoPoint, double, java.lang.Integer, java.lang.String)
-	 */
 	public List<UserPoint> queryRadius(GeoPoint centerPoint, double radiusInMeter, Integer limit, String cursor) throws DAOException {
 		try {
 			List<UserPoint> results = new ArrayList<UserPoint>();
@@ -195,7 +189,7 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 		
 	}
 	
-	public QueryResultPage<UserPoint> findByUserId(String createdAt, Integer limit, String cursor) {
+	public QueryResultPage<UserPoint> findByCreatedAt(String createdAt, Integer limit, String cursor) {
 		
 		HashMap<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":createdAt", new AttributeValue().withS(createdAt));
