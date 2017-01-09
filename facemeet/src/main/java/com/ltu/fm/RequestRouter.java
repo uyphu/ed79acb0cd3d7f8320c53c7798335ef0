@@ -20,6 +20,8 @@ import org.apache.commons.io.IOUtils;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.ltu.fm.action.LambdaAction;
@@ -47,6 +49,63 @@ public class RequestRouter {
      * @throws InternalErrorException This Exception is thrown when an internal error occurs, for example when the database
      *                                is not accessible
      */
+//    public static void lambdaHandler(InputStream request, OutputStream response, Context context) throws BadRequestException, InternalErrorException {
+//        LambdaLogger logger = context.getLogger();
+//
+//        JsonParser parser = new JsonParser();
+//        JsonObject inputObj;
+//        try {
+//            inputObj = parser.parse(IOUtils.toString(request)).getAsJsonObject();
+//        } catch (IOException e) {
+//            logger.log("Error while reading request\n" + e.getMessage());
+//            throw new InternalErrorException(e.getMessage());
+//        }
+//
+//        if (inputObj == null || inputObj.get("action") == null || inputObj.get("action").getAsString().trim().equals("")) {
+//            logger.log("Invald inputObj, could not find action parameter");
+//            throw new BadRequestException("Could not find action value in request");
+//        }
+//
+//        String actionClass = inputObj.get("action").getAsString();
+//        LambdaAction action;
+//
+//        try {
+//            action = LambdaAction.class.cast(Class.forName(actionClass).newInstance());
+//        } catch (final InstantiationException e) {
+//            logger.log("Error while instantiating action class\n" + e.getMessage());
+//            throw new InternalErrorException(e.getMessage());
+//        } catch (final IllegalAccessException e) {
+//            logger.log("Illegal access while instantiating action class\n" + e.getMessage());
+//            throw new InternalErrorException(e.getMessage());
+//        } catch (final ClassNotFoundException e) {
+//            logger.log("Action class could not be found\n" + e.getMessage());
+//            throw new InternalErrorException(e.getMessage());
+//        }
+//
+//        if (action == null) {
+//            logger.log("Action class is null");
+//            throw new BadRequestException("Invalid action class");
+//        }
+//
+//        JsonObject body = null;
+//        if (inputObj.get("body") != null) {
+//            body = inputObj.get("body").getAsJsonObject();
+//        }
+//        
+//        if (body == null) {
+//        	throw new BadRequestException(ExceptionMessages.EX_INVALID_INPUT);
+//		}
+//
+//        String output = action.handle(body, context);
+//
+//        try {
+//            IOUtils.write(output, response);
+//        } catch (final IOException e) {
+//            logger.log("Error while writing response\n" + e.getMessage());
+//            throw new InternalErrorException(e.getMessage());
+//        }
+//    }
+    
     public static void lambdaHandler(InputStream request, OutputStream response, Context context) throws BadRequestException, InternalErrorException {
         LambdaLogger logger = context.getLogger();
 
@@ -85,16 +144,22 @@ public class RequestRouter {
             throw new BadRequestException("Invalid action class");
         }
 
-        JsonObject body = null;
+        //JsonObject body = null;
+        JsonArray bodyArray = null;
         if (inputObj.get("body") != null) {
-            body = inputObj.get("body").getAsJsonObject();
+        	bodyArray = inputObj.get("body").getAsJsonArray();
         }
         
-        if (body == null) {
+        if (bodyArray == null) {
         	throw new BadRequestException(ExceptionMessages.EX_INVALID_INPUT);
 		}
 
-        String output = action.handle(body, context);
+        String output = null;
+        for (JsonElement pa : bodyArray) {
+            JsonObject body = pa.getAsJsonObject();
+            output = action.handle(body, context);
+        }
+        
 
         try {
             IOUtils.write(output, response);

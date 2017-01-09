@@ -29,7 +29,7 @@ public class TestInitHandler extends TestCase {
 	 * Rigourous Test :-)
 	 */
 	public void testApp() {
-		InitDao.initTables();
-		assertTrue(true);
+		//InitDao.initTables();
+//		assertTrue(true);
 	}
 }
