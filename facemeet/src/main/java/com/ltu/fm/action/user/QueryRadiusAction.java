@@ -29,7 +29,7 @@ public class QueryRadiusAction extends AbstractLambdaAction{
         GeoPoint centerPoint = new GeoPoint(input.getLat(), input.getLng());
     	List<UserPoint> result;
 		try {
-			result = dao.queryRadius(centerPoint, 10000.0, 2, null);
+			result = dao.queryRadius(centerPoint, input.getRadiusInMeter(), 2, null);
 		} catch (DAOException e) {
 			throw new InternalErrorException(e.getMessage());
 		}

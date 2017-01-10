@@ -19,7 +19,7 @@ public class QueryRadiusRequest {
 
 	private double lat;
 	private double lng;
-	//private double radiusInMeter;
+	private double radiusInMeter;
 	
 	public double getLat() {
 		return lat;
@@ -33,11 +33,11 @@ public class QueryRadiusRequest {
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
-//	public double getRadiusInMeter() {
-//		return radiusInMeter;
-//	}
-//	public void setRadiusInMeter(double radiusInMeter) {
-//		this.radiusInMeter = radiusInMeter;
-//	}
+	public double getRadiusInMeter() {
+		return radiusInMeter;
+	}
+	public void setRadiusInMeter(double radiusInMeter) {
+		this.radiusInMeter = radiusInMeter;
+	}
 	
 }

@@ -1,9 +1,8 @@
 {
-	"action":"com.ltu.fm.action.user.RegisterAction",
+	"action":"com.ltu.fm.action.user.QueryRadiusAction",
 	"body":{
-	    "email":"uyphu@yahoo.com",
-	    "password":"123456",
-	    "displayName":"Phu3",
-	    "imageUrl":"test"
+	    "radiusInMeter":"200000",
+	    "lat":"10.938616",
+	    "lng":"106.764804"
 	}
 }

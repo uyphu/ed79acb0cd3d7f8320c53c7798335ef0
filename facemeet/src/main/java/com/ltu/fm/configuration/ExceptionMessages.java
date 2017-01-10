@@ -114,7 +114,7 @@ public class ExceptionMessages {
     public static final String EX_ERROR_LEAVE_CONFERENCE = "Error leaving conference. Please try again";
     
     public static final String EX_USER_CONFERENCE_EXISTS = "User Conference exists";
-    public static final String EX_CANNOT_PUSH_MESSAGE = "Cannot push message";
+    public static final String EX_CANNOT_PUSH_MESSAGE = "Cannot connect.";
     public static final String EX_PARAM_SESSION_ID_REQUIRED = "Session Id required";
     
     public static final String EX_ALREADY_IN_CONFERENCE = "Cannot create conference. You are in another";
