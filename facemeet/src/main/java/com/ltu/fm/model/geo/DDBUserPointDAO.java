@@ -167,15 +167,15 @@ public class DDBUserPointDAO extends AbstractDao<UserPoint> implements UserPoint
 
 			QueryRadiusRequest queryRadiusRequest = new QueryRadiusRequest(centerPoint, radiusInMeter);
 			queryRadiusRequest.getQueryRequest().setAttributesToGet(attributesToGet);
-			queryRadiusRequest.getQueryRequest().setExclusiveStartKey(null);
+			//queryRadiusRequest.getQueryRequest().setExclusiveStartKey(null);
 //			if (cursor != null) {
 //				queryRadiusRequest.getQueryRequest().setExclusiveStartKe
 //			} else {
 //				queryRadiusRequest.getQueryRequest().setExclusiveStartKey(null);
 //			}
-			if (limit != null) {
-				queryRadiusRequest.getQueryRequest().withLimit(4);
-			}
+//			if (limit != null) {
+//				queryRadiusRequest.getQueryRequest().withLimit(4);
+//			}
 			QueryRadiusResult queryRadiusResult = geoDataManager.queryRadius(queryRadiusRequest);
 			for (Map<String, AttributeValue> item : queryRadiusResult.getItem()) {
 				results.add(toUserPoint(item));
