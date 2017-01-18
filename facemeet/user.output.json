@@ -1,71 +1,71 @@
 {
-  "items": [
-    {
-      "userId": "2577b94c-4381-4b28-9c97-16306b8ba460",
-      "displayName": "Phu10",
-      "lat": 10.801902,
-      "lng": 106.529617
+  "item": {
+    "id": "b486e8f2-9d97-4f06-b7e9-fd70f50cd3cc",
+    "email": "uyphu9@yahoo.com",
+    "password": {
+      "hb": [
+        -10,
+        89,
+        -79,
+        63,
+        38,
+        -112,
+        50,
+        -53,
+        -93,
+        55,
+        51,
+        62,
+        43,
+        -57,
+        80,
+        -65,
+        -64,
+        -86,
+        -118,
+        62
+      ],
+      "offset": 0,
+      "isReadOnly": false,
+      "bigEndian": true,
+      "nativeByteOrder": false,
+      "mark": -1,
+      "position": 0,
+      "limit": 20,
+      "capacity": 20,
+      "address": 0
     },
-    {
-      "userId": "ec77d248-f00e-4cb1-9dfd-0848f0ccc30d",
-      "displayName": "Phu4",
-      "lat": 10.941827,
-      "lng": 106.755738
+    "salt": {
+      "hb": [
+        -33,
+        -104,
+        124,
+        110,
+        75,
+        31,
+        28,
+        -13
+      ],
+      "offset": 0,
+      "isReadOnly": false,
+      "bigEndian": true,
+      "nativeByteOrder": false,
+      "mark": -1,
+      "position": 0,
+      "limit": 8,
+      "capacity": 8,
+      "address": 0
     },
-    {
-      "userId": "4b1eaea3-602b-47dd-92bc-9014960c7def",
-      "displayName": "Phu5",
-      "lat": 10.940352,
-      "lng": 106.757562
+    "displayName": "Phu9",
+    "imageUrl": "test9",
+    "type": "U",
+    "activateCode": "073015",
+    "status": "P",
+    "identity": {
+      "identityId": "us-east-1:13385d0a-85e7-443d-8c6a-719079239b2c"
     },
-    {
-      "userId": "fdbc9731-4f85-44ce-9a28-89c9f749cd83",
-      "displayName": "Phu3",
-      "lat": 10.940942,
-      "lng": 106.761575
-    },
-    {
-      "userId": "5c10f08f-5845-4b12-8c7e-02b67e1a6d21",
-      "displayName": "Phu2",
-      "lat": 10.939928,
-      "lng": 106.765201
-    },
-    {
-      "userId": "319dec88-6a05-46bf-8635-d5894caaf49f",
-      "displayName": "Phu1",
-      "lat": 10.938667,
-      "lng": 106.767454
-    },
-    {
-      "userId": "d88b0e43-62cd-4675-8cf4-6dacab348557",
-      "displayName": "Phu",
-      "lat": 10.937625,
-      "lng": 106.768903
-    },
-    {
-      "userId": "8fb85838-1e32-4c1f-a9d9-273823fdb29e",
-      "displayName": "Phu8",
-      "lat": 10.936371,
-      "lng": 106.765695
-    },
-    {
-      "userId": "a301d5bf-5e27-4a98-85f1-61b12dec9294",
-      "displayName": "Phu7",
-      "lat": 10.937045,
-      "lng": 106.764021
-    },
-    {
-      "userId": "9db67a4d-3657-4f48-b1e8-96e2f7d87a6a",
-      "displayName": "Phu6",
-      "lat": 10.936139,
-      "lng": 106.76018
-    },
-    {
-      "userId": "e7de519e-1920-4f5a-bbb5-78d1a6d41494",
-      "displayName": "Phu9",
-      "lat": 10.933779,
-      "lng": 106.761403
-    }
-  ],
-  "nextPageToken": "e7de519e-1920-4f5a-bbb5-78d1a6d41494"
+    "createdAt": "2017-01-17T17:07:01Z",
+    "lng": 106.761403,
+    "lat": 10.933779
+  }
 }

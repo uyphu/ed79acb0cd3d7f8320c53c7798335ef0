@@ -20,13 +20,11 @@ package com.ltu.fm.configuration;
 public class CognitoConfiguration {
 	// TODO: Specify the identity pool id
 	/** The Constant IDENTITY_POOL_ID. */
-	public static final String IDENTITY_POOL_ID = "us-east-1:d9a0e97c-27a0-4e92-87c9-7c5de4d9e778";
-	//public static final String IDENTITY_POOL_ID = S3ResourceLoaderUtil.getProperty(AppConfiguration.IDENTITY_POOL_ID);
-    
+	//public static final String IDENTITY_POOL_ID = "us-east-1:d9a0e97c-27a0-4e92-87c9-7c5de4d9e778";
+	public static final String IDENTITY_POOL_ID = "us-east-1:d7ab2c78-2b95-4623-8102-05e8328eb07e";
 	// TODO: Specify the custom provider name used by the identity pool
     /** The Constant CUSTOM_PROVIDER_NAME. */
 	public static final String CUSTOM_PROVIDER_NAME = "com.ltu.fm";
-    //public static final String CUSTOM_PROVIDER_NAME = S3ResourceLoaderUtil.getProperty(AppConfiguration.CUSTOM_PROVIDER_NAME);
 
     /** The Constant COGNITO_PROVIDER_NAME. */
     // This should not be changed, it is a default value for Cognito.
