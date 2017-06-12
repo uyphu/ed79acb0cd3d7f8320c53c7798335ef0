@@ -1,6 +1,5 @@
 package com.ltu.fm.helper;
 
-import com.amazonaws.util.json.JSONObject;
 import com.ltu.fm.constants.Constants;
 import com.ltu.fm.model.user.User;
 
@@ -34,8 +33,8 @@ public class UserHelper {
 	 *            the json
 	 * @return the user
 	 */
-	public static User fromJson(JSONObject json) {
-		return null;
-	}
+//	public static User fromJson(JSONObject json) {
+//		return null;
+//	}
 
 }

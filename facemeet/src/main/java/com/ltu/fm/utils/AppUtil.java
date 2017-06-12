@@ -39,8 +39,8 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
-import com.amazonaws.util.json.JSONException;
-import com.amazonaws.util.json.JSONObject;
+//import com.amazonaws.util.json.JSONException;
+//import com.amazonaws.util.json.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ltu.fm.constants.Constants;
@@ -213,15 +213,15 @@ public class AppUtil {
 		}
 	}
 	
-	/**
-	 * To json.
-	 *
-	 * @param value the value
-	 * @return the JSON object
-	 */
-	public static JSONObject toJSON(String value) throws JSONException {
-		return new JSONObject(value);
-	}
+//	/**
+//	 * To json.
+//	 *
+//	 * @param value the value
+//	 * @return the JSON object
+//	 */
+//	public static JSONObject toJSON(String value) throws JSONException {
+//		return new JSONObject(value);
+//	}
 	
 	/**
 	 * Crypt with m d5.
